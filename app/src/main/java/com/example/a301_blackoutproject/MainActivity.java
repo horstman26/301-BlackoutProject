@@ -10,16 +10,18 @@ import android.widget.LinearLayout;
 
 import java.util.Random;
 
+//Isabella Horstmanshof
+//10/7/2023
+//code for class 301, lights out game
+
 public class MainActivity extends AppCompatActivity {
-    public int white = 255;
-    public int black = 0;
+    //needed variables
     public int randNum;
     public Random rand;
 
+    //arrays of button id's and their checkList boolean
     public Button[] buttonList = new Button[25];
     public boolean[] checkList = new boolean[25];
-
-    //public boolean winGame = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LinearLayout layout = findViewById(R.id.bigLayout);
 
+        //makes the background pink
         setTheBackgroundColor(0);
 
-        //button array
+        //button array is filled
         buttonList[0] = findViewById(R.id.button);
         buttonList[1] = findViewById(R.id.button2);
         buttonList[2] = findViewById(R.id.button3);
@@ -56,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
         buttonList[23] = findViewById(R.id.button24);
         buttonList[24] = findViewById(R.id.button25);
 
-        //list of bools that will be used to set a buttons color
-
+        //gives the buttons a random true or false
         setButtons();
 
         //set up the reset button
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //gives a new true or false to each button and resets the background color
                 setButtons();
                 setTheBackgroundColor(0);
             }
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isGameWon(){
+        //if any button is white, return false. otherwise return true
         for (int i = 0; i < 25; i++){
             if (checkList[i] == true){
                 return false;
@@ -119,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
             checkList[i] = randNum % 2 == 0;
 
         }
-
         //cycle through buttons and make check true(white) or false(black)
         for (int i = 0; i < 25; i++){
             if(checkList[i]) {
@@ -221,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //these four methods are used to get the values of the top, bottom, right, or left button of the button at j
     private void addFive(int j){
         if(checkList[j+5] == true){
             buttonList[j+5].setBackgroundColor(Color.BLACK);
